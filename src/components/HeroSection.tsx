@@ -59,6 +59,7 @@ const HeroSection = () => {
       <button
         onClick={scrollToGallery}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce"
+        aria-label="Scroll to gallery"
       >
         <ArrowDownCircle size={40} />
       </button>

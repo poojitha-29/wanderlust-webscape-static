@@ -60,14 +60,14 @@ const galleryItems: GalleryItem[] = [
   {
     id: 7,
     image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
-    title: 'Paris Cityscape',
-    location: 'France',
+    title: 'Eiffel Tower',
+    location: 'Paris, France',
     region: 'international'
   },
   {
     id: 8,
     image: 'https://images.unsplash.com/photo-1523592121529-f6dde35f079e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
-    title: 'Santorini Sunset',
+    title: 'Santorini',
     location: 'Greece',
     region: 'international'
   },
@@ -102,6 +102,15 @@ const galleryItems: GalleryItem[] = [
 ];
 
 const GalleryItem = ({ item, isVisible }: { item: GalleryItem; isVisible: boolean }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    if (imgRef.current && imgRef.current.complete) {
+      setImageLoaded(true);
+    }
+  }, []);
+
   return (
     <div 
       className={cn(
@@ -113,11 +122,26 @@ const GalleryItem = ({ item, isVisible }: { item: GalleryItem; isVisible: boolea
         aspectRatio: '4/3' 
       }}
     >
+      {!imageLoaded && (
+        <div className="absolute inset-0 bg-gray-200 animate-pulse flex items-center justify-center">
+          <span className="text-gray-500">Loading...</span>
+        </div>
+      )}
       <img 
+        ref={imgRef}
         src={item.image} 
         alt={item.title}
-        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className={cn(
+          "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110",
+          imageLoaded ? "opacity-100" : "opacity-0"
+        )}
         loading="lazy"
+        onLoad={() => setImageLoaded(true)}
+        onError={(e) => {
+          console.error(`Failed to load image for ${item.title}`, e);
+          // Attempt to reload with a fallback image
+          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800';
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
@@ -236,12 +260,12 @@ const Gallery = () => {
           </button>
         </div>
         
-        {/* Slider controls */}
+        {/* Gallery display with error handling */}
         <div className="relative">
           <div className="overflow-hidden" ref={slideContainerRef}>
             <div 
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-transform duration-500"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              style={{ transform: `translateX(-${currentSlide * 100}%)`, transition: 'transform 500ms ease' }}
             >
               {filteredItems.map(item => (
                 <GalleryItem 
@@ -257,12 +281,14 @@ const Gallery = () => {
           <button 
             onClick={handlePrevSlide}
             className="absolute top-1/2 -left-12 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md text-ocean-500 hover:bg-ocean-500 hover:text-white transition-colors"
+            aria-label="Previous destinations"
           >
             <ArrowLeft size={24} />
           </button>
           <button 
             onClick={handleNextSlide}
             className="absolute top-1/2 -right-12 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md text-ocean-500 hover:bg-ocean-500 hover:text-white transition-colors"
+            aria-label="Next destinations"
           >
             <ArrowRight size={24} />
           </button>
@@ -280,6 +306,7 @@ const Gallery = () => {
                   ? "bg-ocean-500" 
                   : "bg-gray-300 hover:bg-gray-400"
               )}
+              aria-label={`Go to slide ${index + 1}`}
             />
           ))}
         </div>
