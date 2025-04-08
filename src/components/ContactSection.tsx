@@ -1,16 +1,22 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, MapPin, Phone, Send } from 'lucide-react';
 
 const ContactSection = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const phoneNumber = "8106868686";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const email = form.elements.namedItem('email') as HTMLInputElement;
     
+    // Set form as submitted to display success message and phone number
+    setFormSubmitted(true);
+    
     // In a real application, you'd handle the form submission to a backend service
     // For now, we'll just demonstrate with a mailto link
-    window.location.href = `mailto:contact@wanderlust.com?subject=Travel%20Inquiry&body=Hello,%20I%20would%20like%20more%20information%20about...%0A%0AFrom:%20${email.value}`;
+    window.location.href = `mailto:contact@sangeethaholidays.com?subject=Travel%20Inquiry&body=Hello,%20I%20would%20like%20more%20information%20about...%0A%0AFrom:%20${email.value}`;
   };
 
   return (
@@ -35,8 +41,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Email Us</h4>
-                    <a href="mailto:contact@wanderlust.com" className="text-gray-600 hover:text-ocean-500 transition-colors">
-                      contact@wanderlust.com
+                    <a href="mailto:contact@sangeethaholidays.com" className="text-gray-600 hover:text-ocean-500 transition-colors">
+                      contact@sangeethaholidays.com
                     </a>
                   </div>
                 </div>
@@ -47,7 +53,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Call Us</h4>
-                    <p className="text-gray-600">+1 (555) 123-4567</p>
+                    <p className="text-gray-600">{phoneNumber}</p>
                   </div>
                 </div>
                 
@@ -59,8 +65,8 @@ const ContactSection = () => {
                     <h4 className="text-lg font-medium">Visit Us</h4>
                     <p className="text-gray-600">
                       123 Traveler's Way<br />
-                      Adventure City, AC 12345<br />
-                      United States
+                      Hyderabad<br />
+                      India
                     </p>
                   </div>
                 </div>
@@ -88,61 +94,83 @@ const ContactSection = () => {
           
           <div className="lg:w-1/2">
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-gray-700 mb-2">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
-                    required
-                  />
+              {formSubmitted ? (
+                <div className="text-center py-8">
+                  <div className="bg-green-100 text-green-700 p-4 rounded-lg mb-6">
+                    <h3 className="text-2xl font-bold mb-3">Message Sent Successfully!</h3>
+                    <p className="mb-4">Thank you for reaching out to us. One of our travel experts will get back to you shortly.</p>
+                    <div className="flex items-center justify-center mt-4">
+                      <Phone size={24} className="text-ocean-500 mr-2" />
+                      <p className="text-xl font-bold">{phoneNumber}</p>
+                    </div>
+                    <p className="mt-2">Call us directly for immediate assistance</p>
+                  </div>
+                  <button
+                    onClick={() => setFormSubmitted(false)}
+                    className="bg-ocean-500 hover:bg-ocean-600 text-white px-6 py-3 rounded-md transition-colors"
+                  >
+                    Send Another Message
+                  </button>
                 </div>
-                
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2">Your Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 mb-2">Your Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
-                    required
-                  ></textarea>
-                </div>
-                
-                <button
-                  type="submit"
-                  className="inline-flex items-center bg-ocean-500 hover:bg-ocean-600 text-white px-6 py-3 rounded-md transition-colors"
-                >
-                  <Send size={18} className="mr-2" />
-                  Send Message
-                </button>
-              </form>
+              ) : (
+                <>
+                  <h3 className="text-2xl font-bold mb-6">Send us a Message</h3>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="name" className="block text-gray-700 mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="email" className="block text-gray-700 mb-2">Your Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="subject" className="block text-gray-700 mb-2">Subject</label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    
+                    <div>
+                      <label htmlFor="message" className="block text-gray-700 mb-2">Your Message</label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={4}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent"
+                        required
+                      ></textarea>
+                    </div>
+                    
+                    <button
+                      type="submit"
+                      className="inline-flex items-center bg-ocean-500 hover:bg-ocean-600 text-white px-6 py-3 rounded-md transition-colors"
+                    >
+                      <Send size={18} className="mr-2" />
+                      Send Message
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           </div>
         </div>

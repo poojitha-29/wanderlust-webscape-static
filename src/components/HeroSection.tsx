@@ -27,10 +27,10 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in leading-tight">
-            Discover the World's Hidden Gems
+            Let's See The World Together
           </h1>
           <p className="text-xl text-white opacity-90 mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Embark on a journey of discovery, adventure, and unforgettable experiences with our curated travel guides.
+            Embark on a journey of discovery, adventure, and unforgettable experiences with Sangeetha Holidays' curated travel guides.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <button

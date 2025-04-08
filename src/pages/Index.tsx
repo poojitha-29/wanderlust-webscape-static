@@ -11,7 +11,7 @@ import Footer from '../components/Footer';
 const Index = () => {
   useEffect(() => {
     // Update page title
-    document.title = 'Wanderlust - Discover the World';
+    document.title = 'Sangeetha Holidays - Let\'s See The World Together';
   }, []);
 
   return (

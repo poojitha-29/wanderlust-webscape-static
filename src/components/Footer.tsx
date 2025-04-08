@@ -16,9 +16,16 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-2xl font-bold mb-4 text-ocean-400">Wanderlust</h3>
+            <div className="flex items-center mb-4">
+              <img
+                src="/lovable-uploads/2055d84b-f9a3-4a41-a7e7-cdf49c1136ea.png"
+                alt="Sangeetha Holidays Logo"
+                className="h-12 mr-2"
+              />
+              <h3 className="text-2xl font-bold text-ocean-400">Sangeetha Holidays</h3>
+            </div>
             <p className="text-gray-400 mb-4">
-              Empowering travelers to explore the world with confidence, curiosity, and respect for local cultures.
+              Let's see the world together with confidence, curiosity, and respect for local cultures.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">
@@ -40,22 +47,22 @@ const Footer = () => {
             <h4 className="text-lg font-bold mb-4">Destinations</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Europe</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Indian Destinations</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Asia</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">International Destinations</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">North America</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Pilgrimage Tours</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">South America</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Adventure Tours</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Africa</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Heritage Tours</a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Oceania</a>
+                <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Wildlife Tours</a>
               </li>
             </ul>
           </div>
@@ -135,7 +142,7 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 mb-4 md:mb-0">
-            &copy; {currentYear} Wanderlust. All rights reserved.
+            &copy; {currentYear} Sangeetha Holidays Pvt. Ltd. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-400 hover:text-ocean-400 transition-colors">Privacy Policy</a>

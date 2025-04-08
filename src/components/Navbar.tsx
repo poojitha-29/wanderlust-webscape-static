@@ -34,9 +34,16 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#" className="text-2xl font-bold text-ocean-600 font-heading">
-          Wanderlust
-        </a>
+        <div className="flex items-center">
+          <img 
+            src="/lovable-uploads/2055d84b-f9a3-4a41-a7e7-cdf49c1136ea.png" 
+            alt="Sangeetha Holidays Logo" 
+            className="h-14 mr-2"
+          />
+          <a href="#" className="text-2xl font-bold text-ocean-600 font-heading">
+            Sangeetha Holidays
+          </a>
+        </div>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
