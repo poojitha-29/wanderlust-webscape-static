@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,12 +19,42 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Montserrat', 'sans-serif'],
+				heading: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+				ocean: {
+					DEFAULT: '#0EA5E9',
+					50: '#E0F7FF',
+					100: '#B8EBFF',
+					200: '#8CD5F9',
+					300: '#5BBAE5',
+					400: '#2A9FD6',
+					500: '#0EA5E9',
+					600: '#0B84C2',
+					700: '#08649A',
+					800: '#064473',
+					900: '#042F4F',
+				},
+				sand: {
+					DEFAULT: '#E0C29F',
+					50: '#FCF8F3',
+					100: '#F8EFE3',
+					200: '#F0DFC2',
+					300: '#E0C29F',
+					400: '#D3A978',
+					500: '#C68F51',
+					600: '#A87434',
+					700: '#815A28',
+					800: '#5A3F1C',
+					900: '#332410',
+				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
@@ -84,11 +115,33 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-out': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'fade-out': 'fade-out 0.5s ease-out'
 			}
 		}
 	},
