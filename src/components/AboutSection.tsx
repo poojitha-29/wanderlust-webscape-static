@@ -46,7 +46,7 @@ const AboutSection = () => {
     <section id="about" className="section bg-white">
       <div className="container mx-auto">
         <h2 className="section-title text-gray-900">
-          About <span className="text-ocean-500">Wanderlust</span>
+          About <span className="text-ocean-500">Sangeetha Holidays</span>
         </h2>
         <p className="section-subtitle">
           We're passionate about helping you discover the world's most amazing destinations and creating unforgettable travel experiences.
@@ -68,7 +68,7 @@ const AboutSection = () => {
             <div className="lg:w-1/2">
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-gray-700 mb-4">
-                At Wanderlust, we believe that travel is more than just visiting new places—it's about immersing yourself in different cultures, creating lasting memories, and growing as an individual.
+                At Sangeetha Holidays, we believe that travel is more than just visiting new places—it's about immersing yourself in different cultures, creating lasting memories, and growing as an individual.
               </p>
               <p className="text-gray-700 mb-4">
                 Our mission is to inspire and empower travelers to explore the world with confidence, curiosity, and respect for local cultures and environments.

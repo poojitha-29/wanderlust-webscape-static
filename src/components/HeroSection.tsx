@@ -9,6 +9,13 @@ const HeroSection = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  
+  const scrollToVideo = () => {
+    const element = document.getElementById('video');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section
@@ -39,8 +46,11 @@ const HeroSection = () => {
             >
               Explore Destinations
             </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md transition-all transform hover:scale-105 hover:bg-white/10 font-medium">
-              View Travel Guides
+            <button 
+              onClick={scrollToVideo}
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md transition-all transform hover:scale-105 hover:bg-white/10 font-medium"
+            >
+              Customer Testimonials
             </button>
           </div>
         </div>

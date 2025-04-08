@@ -16,7 +16,7 @@ const ContactSection = () => {
     
     // In a real application, you'd handle the form submission to a backend service
     // For now, we'll just demonstrate with a mailto link
-    window.location.href = `mailto:contact@sangeethaholidays.com?subject=Travel%20Inquiry&body=Hello,%20I%20would%20like%20more%20information%20about...%0A%0AFrom:%20${email.value}`;
+    window.location.href = `mailto:sangeethaholidayspvtltd@gmail.com?subject=Travel%20Inquiry&body=Hello,%20I%20would%20like%20more%20information%20about...%0A%0AFrom:%20${email.value}`;
   };
 
   return (
@@ -41,8 +41,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-medium">Email Us</h4>
-                    <a href="mailto:contact@sangeethaholidays.com" className="text-gray-600 hover:text-ocean-500 transition-colors">
-                      contact@sangeethaholidays.com
+                    <a href="mailto:sangeethaholidayspvtltd@gmail.com" className="text-gray-600 hover:text-ocean-500 transition-colors">
+                      sangeethaholidayspvtltd@gmail.com
                     </a>
                   </div>
                 </div>
@@ -64,7 +64,6 @@ const ContactSection = () => {
                   <div>
                     <h4 className="text-lg font-medium">Visit Us</h4>
                     <p className="text-gray-600">
-                      123 Traveler's Way<br />
                       Hyderabad<br />
                       India
                     </p>
