@@ -10,6 +10,7 @@ interface GalleryItemProps {
 
 const GalleryItem: React.FC<GalleryItemProps> = ({ item, isVisible }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -17,6 +18,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, isVisible }) => {
       setImageLoaded(true);
     }
   }, []);
+
+  // Default fallback image if the original image fails to load
+  const fallbackImage = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800';
 
   return (
     <div 
@@ -36,7 +40,7 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, isVisible }) => {
       )}
       <img 
         ref={imgRef}
-        src={item.image} 
+        src={imageError ? fallbackImage : item.image} 
         alt={item.title}
         className={cn(
           "w-full h-full object-cover transition-transform duration-700 group-hover:scale-110",
@@ -45,9 +49,9 @@ const GalleryItem: React.FC<GalleryItemProps> = ({ item, isVisible }) => {
         loading="lazy"
         onLoad={() => setImageLoaded(true)}
         onError={(e) => {
-          console.error(`Failed to load image for ${item.title}`, e);
-          // Attempt to reload with a fallback image
-          (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800';
+          console.error(`Failed to load image for ${item.title}`);
+          setImageError(true);
+          setImageLoaded(true);
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

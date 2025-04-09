@@ -45,45 +45,66 @@ export const galleryItems: GalleryItem[] = [
     location: 'Mumbai, India',
     region: 'india'
   },
+  {
+    id: 7,
+    image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
+    title: 'Mysore Palace',
+    location: 'Mysore, India',
+    region: 'india'
+  },
+  {
+    id: 8,
+    image: 'https://images.unsplash.com/photo-1572446296902-8916e4a33be6?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
+    title: 'Darjeeling Hills',
+    location: 'Darjeeling, India',
+    region: 'india'
+  },
+  {
+    id: 9,
+    image: 'https://images.unsplash.com/photo-1526711657229-e7e080ed7aa1?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
+    title: 'Andaman Islands',
+    location: 'Andaman & Nicobar, India',
+    region: 'india'
+  },
+  {
+    id: 10,
+    image: 'https://images.unsplash.com/photo-1591699331300-fad2ef5dca9d?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
+    title: 'Ladakh Mountains',
+    location: 'Ladakh, India',
+    region: 'india'
+  },
   
   // International Destinations
   {
-    id: 7,
+    id: 11,
     image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
     title: 'Eiffel Tower',
     location: 'Paris, France',
     region: 'international'
   },
   {
-    id: 8,
+    id: 12,
     image: 'https://images.unsplash.com/photo-1523592121529-f6dde35f079e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
     title: 'Santorini',
     location: 'Greece',
     region: 'international'
   },
   {
-    id: 9,
+    id: 13,
     image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
     title: 'Amalfi Coast',
     location: 'Italy',
     region: 'international'
   },
   {
-    id: 10,
-    image: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
-    title: 'Kyoto Gardens',
-    location: 'Japan',
+    id: 14,
+    image: 'https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
+    title: 'Burj Khalifa',
+    location: 'Dubai, UAE',
     region: 'international'
   },
   {
-    id: 11,
-    image: 'https://images.unsplash.com/photo-1597000710656-de95785906d8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
-    title: 'Machu Picchu',
-    location: 'Peru',
-    region: 'international'
-  },
-  {
-    id: 12,
+    id: 15,
     image: 'https://images.unsplash.com/photo-1533348922293-cec6736cd228?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=800',
     title: 'Maldives Beach Resort',
     location: 'Maldives',
