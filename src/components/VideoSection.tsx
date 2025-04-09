@@ -31,7 +31,7 @@ const VideoSection = () => {
     <section id="video" className="section bg-gray-100">
       <div className="container mx-auto">
         <h2 className="section-title text-gray-900">
-          Travel <span className="text-ocean-500">Inspiration</span>
+          <span className="text-ocean-500">Videos</span>
         </h2>
         <p className="section-subtitle">
           Immerse yourself in breathtaking landscapes and cultural experiences from around the globe.
@@ -42,7 +42,7 @@ const VideoSection = () => {
             <iframe
               id="travel-video"
               src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
-              title="Travel Inspiration Video"
+              title="Travel Video"
               className="absolute inset-0 w-full h-full"
               allowFullScreen
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
