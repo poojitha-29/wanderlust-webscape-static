@@ -69,7 +69,7 @@ const Navbar = () => {
             onClick={() => scrollToSection('video')}
             className="text-gray-800 hover:text-ocean-500 transition-colors"
           >
-            Videos
+            Testimonials
           </button>
           <button
             onClick={() => scrollToSection('about')}
@@ -123,7 +123,7 @@ const Navbar = () => {
           onClick={() => scrollToSection('video')}
           className="text-xl font-medium text-gray-800 hover:text-ocean-500 transition-colors w-full text-center py-2"
         >
-          Videos
+          Testimonials
         </button>
         <button
           onClick={() => scrollToSection('about')}

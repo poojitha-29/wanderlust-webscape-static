@@ -68,7 +68,7 @@ const VideoSection = () => {
     <section id="video" className="section bg-gray-100">
       <div className="container mx-auto">
         <h2 className="section-title text-gray-900">
-          <span className="text-ocean-500">Videos</span>
+          <span className="text-ocean-500">Testimonials</span>
         </h2>
         
         <div className="relative max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl mb-6">
@@ -92,7 +92,7 @@ const VideoSection = () => {
         </div>
         
         <div className="mt-6 mb-4">
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">More Videos</h3>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">More Testimonials</h3>
           <ScrollArea className="h-[200px] w-full rounded-md border p-4">
             <Carousel className="w-full">
               <CarouselContent>
