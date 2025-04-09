@@ -42,9 +42,9 @@ const PackageItem: React.FC<PackageItemProps> = ({ item }) => {
             <DialogTitle className="text-2xl font-bold mb-4">{item.title}</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col items-center">
-            <div className="w-full h-[60vh] relative rounded-lg overflow-hidden mb-4">
+            <div className="w-full h-[70vh] relative rounded-lg overflow-hidden mb-4">
               <img 
-                src={item.image} 
+                src={item.detailImage} 
                 alt={item.title} 
                 className="w-full h-full object-contain"
                 onError={(e) => {
