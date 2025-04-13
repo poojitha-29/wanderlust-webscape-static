@@ -4,7 +4,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import TestimonialVideoPlayer from './testimonials/TestimonialVideoPlayer';
 import TestimonialInfo from './testimonials/TestimonialInfo';
 import TestimonialGallery from './testimonials/TestimonialGallery';
+import TestimonialImageSlider from './testimonials/TestimonialImageSlider';
 import { getTestimonialVideos } from './testimonials/testimonialData';
+import { useTestimonialImages } from '@/hooks/useTestimonialImages';
 import { TestimonialVideo } from './testimonials/types';
 
 const VideoSection = () => {
@@ -15,7 +17,11 @@ const VideoSection = () => {
   const [activeVideoSrc, setActiveVideoSrc] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [activeVideo, setActiveVideo] = useState<TestimonialVideo | null>(null);
+  const [showVideos, setShowVideos] = useState(false);
   const itemsPerPage = 5;
+  
+  // Fetch all testimonial images
+  const { images: testimonialImages, isLoading } = useTestimonialImages();
 
   useEffect(() => {
     // Load testimonial videos
@@ -84,41 +90,83 @@ const VideoSection = () => {
           <span className="text-ocean-500">Customer Testimonials</span>
         </h2>
         <p className="text-center text-gray-600 mb-10">
-          Hear what our satisfied customers have to say about their travel experiences with us.
+          Hear and see what our satisfied customers have to say about their travel experiences with us.
         </p>
         
-        {activeVideo && (
+        {/* Toggle between images and videos */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex rounded-md shadow-sm">
+            <button
+              type="button"
+              onClick={() => setShowVideos(false)}
+              className={`px-4 py-2 text-sm font-medium rounded-l-lg ${!showVideos ? 'bg-ocean-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+            >
+              Photo Gallery
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowVideos(true)}
+              className={`px-4 py-2 text-sm font-medium rounded-r-lg ${showVideos ? 'bg-ocean-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-50'}`}
+            >
+              Video Testimonials
+            </button>
+          </div>
+        </div>
+        
+        {showVideos ? (
+          // Video testimonials section
           <>
-            <TestimonialVideoPlayer 
-              activeVideo={activeVideo}
-              isPlaying={isPlaying}
-              togglePlay={togglePlay}
+            {activeVideo && (
+              <>
+                <TestimonialVideoPlayer 
+                  activeVideo={activeVideo}
+                  isPlaying={isPlaying}
+                  togglePlay={togglePlay}
+                />
+                
+                <TestimonialInfo activeVideo={activeVideo} />
+              </>
+            )}
+            
+            <ScrollArea className="h-[300px] w-full rounded-md border p-4">
+              <TestimonialGallery
+                testimonials={testimonials}
+                activeVideoId={activeVideoId}
+                selectVideo={selectVideo}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                itemsPerPage={itemsPerPage}
+              />
+            </ScrollArea>
+          </>
+        ) : (
+          // Image testimonials section
+          <>
+            <TestimonialInfo 
+              title="Travel Moments Shared by Our Customers" 
+              subtitle="Browse through memories captured during unforgettable journeys" 
             />
             
-            <TestimonialInfo activeVideo={activeVideo} />
+            <div className="max-w-6xl mx-auto">
+              {isLoading ? (
+                <div className="flex items-center justify-center h-64 bg-gray-100 rounded-md">
+                  <p className="text-gray-500">Loading testimonial images...</p>
+                </div>
+              ) : (
+                <TestimonialImageSlider images={testimonialImages} />
+              )}
+            </div>
           </>
         )}
-        
-        <ScrollArea className="h-[300px] w-full rounded-md border p-4">
-          <TestimonialGallery
-            testimonials={testimonials}
-            activeVideoId={activeVideoId}
-            selectVideo={selectVideo}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            itemsPerPage={itemsPerPage}
-          />
-        </ScrollArea>
         
         {/* Instructions for adding more testimonials */}
         <div className="mt-10 bg-gray-50 p-6 rounded-lg border border-gray-200 max-w-2xl mx-auto">
           <h4 className="text-lg font-medium text-gray-800 mb-2">Adding More Testimonials</h4>
           <p className="text-sm text-gray-600 mb-2">
-            To add more testimonials, update the <code className="bg-gray-100 px-1 py-0.5 rounded text-pink-600">getTestimonialVideos</code> function in the testimonialData.ts file.
+            To add more photo testimonials, simply upload JPG, PNG or WebP images to the <code className="bg-gray-100 px-1 py-0.5 rounded text-pink-600">/testimonials</code> folder on the server.
           </p>
           <p className="text-sm text-gray-600">
-            For YouTube videos: Add the video ID (the part after v= in YouTube URL)<br/>
-            For local videos: Add video files directly to the public folder
+            For video testimonials: Update the <code className="bg-gray-100 px-1 py-0.5 rounded text-pink-600">getTestimonialVideos</code> function in testimonialData.ts file.
           </p>
         </div>
       </div>

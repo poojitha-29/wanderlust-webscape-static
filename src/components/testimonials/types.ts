@@ -9,3 +9,10 @@ export type TestimonialVideo = {
   thumbnail: string;
   videoSrc?: string;
 };
+
+// Define the type for testimonial images
+export type TestimonialImage = {
+  id: string;
+  src: string;
+  alt?: string;
+};
