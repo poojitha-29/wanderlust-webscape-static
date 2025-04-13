@@ -10,82 +10,92 @@ import {
 } from '@/components/ui/carousel';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-// Function to get all videos from public folder
+// Function to get testimonial videos from public folder
 const getTestimonialVideos = () => {
-  // In a real application, this would be dynamically generated
-  // Here we're hardcoding based on files in the public folder
+  // In a real application, this would be dynamically generated from server
+  // Here we're hardcoding based on files directly in the public folder
   return [
-    // Sample YouTube videos with titles and customer information
+    // Sample YouTube videos
     {
       id: "MXTvxIhVHe4",
-      type: "youtube",
+      type: "youtube" as const,
       title: "Manali Trip Review",
       customer: "Ramesh Kumar",
       location: "Delhi",
-      thumbnail: "/testimonials/thumbnails/manali-trip.jpg"
+      thumbnail: "/manali-trip.jpg"
     },
     {
       id: "IV9fbwBQ-xM",
-      type: "youtube",
+      type: "youtube" as const,
       title: "Kashmir Vacation Experience",
       customer: "Priya Singh",
       location: "Mumbai",
-      thumbnail: "/testimonials/thumbnails/kashmir-vacation.jpg"
+      thumbnail: "/kashmir-vacation.jpg"
     },
     {
       id: "4J9c2VNjC1g",
-      type: "youtube",
+      type: "youtube" as const,
       title: "Europe Tour Feedback",
       customer: "Suresh Patel",
       location: "Ahmedabad",
-      thumbnail: "/testimonials/thumbnails/europe-tour.jpg"
+      thumbnail: "/europe-tour.jpg"
     },
     {
       id: "BbvoAkrE7as",
-      type: "youtube",
+      type: "youtube" as const,
       title: "Kerala Backwaters",
       customer: "Lakshmi Menon",
       location: "Bangalore",
-      thumbnail: "/testimonials/thumbnails/kerala-backwaters.jpg"
+      thumbnail: "/kerala-backwaters.jpg"
     },
     {
       id: "HN9ngcxBnuE",
-      type: "youtube",
+      type: "youtube" as const,
       title: "Thailand Trip Highlights",
       customer: "Vikram Sharma",
       location: "Pune",
-      thumbnail: "/testimonials/thumbnails/thailand-trip.jpg"
+      thumbnail: "/thailand-trip.jpg"
     },
-    // Add more entries for your YouTube videos here
     
-    // Local video files examples (if you've added local videos)
+    // Local video files examples 
     {
       id: "testimonial-1",
-      type: "local",
+      type: "local" as const,
       title: "Goa Beach Vacation",
       customer: "Anjali Mehta",
       location: "Chennai",
-      videoSrc: "/testimonials/videos/testimonial-1.mp4",
-      thumbnail: "/testimonials/thumbnails/goa-beach.jpg"
+      videoSrc: "/testimonial-1.mp4",
+      thumbnail: "/goa-beach.jpg"
     },
     {
       id: "testimonial-2",
-      type: "local",
+      type: "local" as const,
       title: "Rajasthan Heritage Tour",
       customer: "Arjun Singh",
       location: "Jaipur",
-      videoSrc: "/testimonials/videos/testimonial-2.mp4",
-      thumbnail: "/testimonials/thumbnails/rajasthan-heritage.jpg"
+      videoSrc: "/testimonial-2.mp4",
+      thumbnail: "/rajasthan-heritage.jpg"
     }
-    // Add more entries for your local videos here
+    // Add more entries as needed based on files in your public folder
   ];
+};
+
+// Define the type for testimonial videos
+type TestimonialVideo = {
+  id: string;
+  type: "youtube" | "local";
+  title: string;
+  customer: string;
+  location: string;
+  thumbnail: string;
+  videoSrc?: string;
 };
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [testimonials, setTestimonials] = useState<TestimonialVideo[]>([]);
   const [activeVideoId, setActiveVideoId] = useState('');
-  const [activeVideoType, setActiveVideoType] = useState<'youtube' | 'local'>('youtube');
+  const [activeVideoType, setActiveVideoType] = useState<"youtube" | "local">("youtube");
   const [activeVideoSrc, setActiveVideoSrc] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 5;
@@ -100,7 +110,7 @@ const VideoSection = () => {
       setActiveVideoId(firstVideo.id);
       setActiveVideoType(firstVideo.type);
       if (firstVideo.type === 'local') {
-        setActiveVideoSrc(firstVideo.videoSrc);
+        setActiveVideoSrc(firstVideo.videoSrc || '');
       }
     }
   }, []);
@@ -139,11 +149,11 @@ const VideoSection = () => {
     }
   };
 
-  const selectVideo = (video: any) => {
+  const selectVideo = (video: TestimonialVideo) => {
     setActiveVideoId(video.id);
     setActiveVideoType(video.type);
     if (video.type === 'local') {
-      setActiveVideoSrc(video.videoSrc);
+      setActiveVideoSrc(video.videoSrc || '');
     }
     setIsPlaying(false);
   };
@@ -226,12 +236,12 @@ const VideoSection = () => {
                         <img 
                           src={video.thumbnail || (video.type === 'youtube' ? 
                               `https://img.youtube.com/vi/${video.id}/mqdefault.jpg` : 
-                              '/testimonials/placeholder.jpg')}
+                              '/placeholder.jpg')}
                           alt={video.title}
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src = '/testimonials/placeholder.jpg';
+                            target.src = '/placeholder.jpg';
                           }}
                         />
                       </div>
@@ -281,7 +291,7 @@ const VideoSection = () => {
           </p>
           <p className="text-sm text-gray-600">
             For YouTube videos: Add the video ID (the part after v= in YouTube URL)<br/>
-            For local videos: Add video files to <code className="bg-gray-100 px-1 py-0.5 rounded text-pink-600">/public/testimonials/videos/</code> and thumbnails to <code className="bg-gray-100 px-1 py-0.5 rounded text-pink-600">/public/testimonials/thumbnails/</code>
+            For local videos: Add video files directly to the public folder
           </p>
         </div>
       </div>
