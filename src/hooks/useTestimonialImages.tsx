@@ -14,11 +14,15 @@ export const useTestimonialImages = (folderPath: string = '/testimonials') => {
       try {
         // In a real production environment, you would implement server-side 
         // directory reading. For this example, we'll simulate it with the testimonialData
-        const response = await fetch(`${folderPath}/index.json`).catch(() => {
-          // If index.json doesn't exist, we'll fall back to our hardcoded list
-          // In a real app, this would be replaced with a directory scan API endpoint
-          return { ok: false };
-        });
+        let response: Response;
+        
+        try {
+          response = await fetch(`${folderPath}/index.json`);
+        } catch (err) {
+          // If fetch fails, we'll handle it by setting a mock response
+          console.log("Failed to fetch index.json, using fallback data");
+          throw new Error("Failed to load index.json");
+        }
 
         if (response.ok) {
           // If an index.json exists, use it
@@ -68,6 +72,26 @@ export const useTestimonialImages = (folderPath: string = '/testimonials') => {
       } catch (err) {
         console.error('Error fetching testimonial images:', err);
         setError('Failed to load testimonial images');
+        
+        // Fallback to default images in case of error
+        const fallbackImages: TestimonialImage[] = [];
+        const defaultFileNames = [
+          'beach-vacation.jpg',
+          'mountain-trip.jpg',
+          'city-tour.jpg',
+          'safari-adventure.png',
+          'cruise-vacation.jpg'
+        ];
+        
+        defaultFileNames.forEach((fileName, index) => {
+          fallbackImages.push({
+            id: `fallback-${index}`,
+            src: `${folderPath}/${fileName}`,
+            alt: `Fallback testimonial ${index + 1}`
+          });
+        });
+        
+        setImages(fallbackImages);
       } finally {
         setIsLoading(false);
       }
